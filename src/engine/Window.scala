@@ -48,4 +48,6 @@ object Window
   def shouldLoop(window: Long): Boolean = !glfwWindowShouldClose(window)
 
   def poll(): Unit = glfwPollEvents()
+
+  def swapBuffers(window: Long): Unit = glfwSwapBuffers(window)
 }
