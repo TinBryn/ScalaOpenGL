@@ -7,5 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="scala-sdk-2.12.7" level="application" />
+    <orderEntry type="library" name="lwjgl-release-3.2" level="project" />
   </component>
 </module>
