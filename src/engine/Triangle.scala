@@ -4,7 +4,7 @@ import java.nio.FloatBuffer
 
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.{GL11, GL15, GL20, GL30}
-import subspace.Vector3
+import subspace.{Matrix4x4, Quaternion, Vector3}
 
 case class Triangle(program: Program) extends Model
 {
@@ -23,9 +23,7 @@ case class Triangle(program: Program) extends Model
     val verticies = Array(
       Vector3(-0.433f, -0.25f, 0.0f),
       Vector3(0.433f, -0.25f, 0.0f),
-      Vector3(0.0f, 0.5f, 0.0f)).flatMap(_.toArray)
-
-    println(verticies.toList)
+      Vector3(0.0f, 0.5f, 0.0f)).map(_ * 1.5f).flatMap(v => v.toArray)
 
     val vBuff: FloatBuffer = BufferUtils.createFloatBuffer(verticies.length)
     vBuff.put(verticies).flip()
@@ -41,16 +39,14 @@ case class Triangle(program: Program) extends Model
     VBO
   }
 
-  var MVP: Array[Float] =
-    Array(
-      1,0,0,0,
-      0,1,0,0,
-      0,0,1,0,
-      0,0,0,1)
+  private var MVP = Matrix4x4.identity
+
+  private var theta = 0f
 
   def update(): Unit =
   {
-
+    theta += 0.01f
+    MVP = Matrix4x4.forRotation(Quaternion.forAxisAngle(Vector3(0, 0, 1), theta))
   }
 
   val MVP_location: Int = GL20.glGetUniformLocation(program.id, "MVP")
@@ -60,7 +56,7 @@ case class Triangle(program: Program) extends Model
     GL30.glBindVertexArray(VAO)
     GL20.glEnableVertexAttribArray(0)
 
-    GL20.glUniformMatrix4fv(MVP_location, false, MVP.toList.toArray)
+    GL20.glUniformMatrix4fv(MVP_location, false, MVP.toArray)
   }
 
   override def draw(): Unit = GL11.glDrawArrays(GL11.GL_TRIANGLES, 0, 3)
