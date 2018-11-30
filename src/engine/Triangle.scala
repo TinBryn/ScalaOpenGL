@@ -2,9 +2,9 @@ package engine
 
 import java.nio.FloatBuffer
 
+import math3d.{Mat4, Vec3}
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.{GL11, GL15, GL20, GL30}
-import subspace.{Matrix4x4, Quaternion, Vector3}
 
 case class Triangle(program: Program) extends Model
 {
@@ -21,9 +21,9 @@ case class Triangle(program: Program) extends Model
     GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, VBO)
 
     val verticies = Array(
-      Vector3(-0.433f, -0.25f, 0.0f),
-      Vector3(0.433f, -0.25f, 0.0f),
-      Vector3(0.0f, 0.5f, 0.0f)).map(_ * 1.5f).flatMap(v => v.toArray)
+      Vec3(-0.433f, -0.25f, 0.0f),
+      Vec3(0.433f, -0.25f, 0.0f),
+      Vec3(0.0f, 0.5f, 0.0f)).map(_ * 1.5f).flatMap(v => v.toArray)
 
     val vBuff: FloatBuffer = BufferUtils.createFloatBuffer(verticies.length)
     vBuff.put(verticies).flip()
@@ -39,14 +39,14 @@ case class Triangle(program: Program) extends Model
     VBO
   }
 
-  private var MVP = Matrix4x4.identity
+  private var MVP = Mat4(1)
 
   private var theta = 0f
 
   def update(): Unit =
   {
     theta += 0.01f
-    MVP = Matrix4x4.forRotation(Quaternion.forAxisAngle(Vector3(0, 0, 1), theta))
+    MVP = Mat4.rotateXY(theta)
   }
 
   val MVP_location: Int = GL20.glGetUniformLocation(program.id, "MVP")

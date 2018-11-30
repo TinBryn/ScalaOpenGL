@@ -35,8 +35,8 @@ case class Mat2x2f(e00: Float, e01: Float, e10: Float, e11: Float)
       e00 * m.e00 + e01 * m.e10, e00 * m.e01 + e01 * m.e11,
       e10 * m.e00 + e11 * m.e10, e10 * m.e01 + e11 * m.e11)
 
-  def *(v: Vec2f) =
-    Vec2f(e00 * v.x + e01 * v.y, e10 * v.x + e11 * v.y)
+  def *(v: Vec2) =
+    Vec2(e00 * v.x + e01 * v.y, e10 * v.x + e11 * v.y)
 
   def determinant: Float = e00 * e11 - e01 * e10
 
@@ -46,7 +46,7 @@ case class Mat2x2f(e00: Float, e01: Float, e10: Float, e11: Float)
 object Mat2x2f
 {
   def apply(m: Mat2x2f): Mat2x2f = Mat2x2f(m.e00, m.e01, m.e10, m.e11)
-  def apply(v1: Vec2f, v2: Vec2f): Mat2x2f = Mat2x2f(v1.x, v1.y, v2.x, v2.y)
+  def apply(v1: Vec2, v2: Vec2): Mat2x2f = Mat2x2f(v1.x, v1.y, v2.x, v2.y)
   def apply(s: Float): Mat2x2f = Mat2x2f(s, 0, 0, s)
   def apply(): Mat2x2f = Mat2x2f(1, 0, 0, 1)
   def rotate(theta: Float): Mat2x2f =
