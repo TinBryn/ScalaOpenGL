@@ -32,6 +32,8 @@ case class Vec4(x: Float, y: Float, z: Float, w: Float)
   def *(v: Vec4) = Vec4(x * v.x, y * v.y, z * v.z, w * v.w)
   def /(v: Vec4) = Vec4(x / v.x, y / v.y, z / v.z, w / v.w)
 
+  def dot(v: Vec4): Float = x * v.x + y * v.y + z * v.z + w * v.w
+
   //swizzle
   def xx = Vec2(x, x)
   def xy = Vec2(x, y)

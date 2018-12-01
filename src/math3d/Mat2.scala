@@ -3,7 +3,7 @@ package math3d
 object Mat2
 {
   def apply(m: Mat2): Mat2 = Mat2(m.e11, m.e12, m.e21, m.e22)
-  def apply(v1: Vec2, v2: Vec2): Mat2 = Mat2(v1.x, v1.y, v2.x, v2.y)
+  def rows(v1: Vec2, v2: Vec2): Mat2 = Mat2(v1.x, v1.y, v2.x, v2.y)
   def apply(s: Float): Mat2 = Mat2(s, 0, 0, s)
   def apply(): Mat2 = Mat2(1)
   def rotate(theta: Float): Mat2 =

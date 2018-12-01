@@ -24,9 +24,9 @@ object GenerateSwizzles
   }
 
   def genSwizzle(a: Char, b: Char) =
-    s"def $a$b = Vec2($a, $b)"
+    s"def $a$b = Vector2($a, $b)"
   def genSwizzle(a: Char, b: Char, c: Char) =
-    s"def $a$b$c = Vec3($a, $b, $c)"
+    s"def $a$b$c = Vector3($a, $b, $c)"
   def genSwizzle(a: Char, b: Char, c: Char, d: Char) =
-    s"def $a$b$c$d = Vec4($a, $b, $c, $d)"
+    s"def $a$b$c$d = Vector4($a, $b, $c, $d)"
 }

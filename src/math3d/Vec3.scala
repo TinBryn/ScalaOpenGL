@@ -32,6 +32,9 @@ case class Vec3(x: Float, y: Float, z: Float)
   def *(v: Vec3) = Vec3(x * v.x, y * v.y, z * v.z)
   def /(v: Vec3) = Vec3(x / v.x, y / v.y, z / v.z)
 
+  def dot(v: Vec3): Float = x * v.x + y * v.y + z * v.z
+  def cross(v: Vec3) = Vec3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x)
+
   //swizzle
   def xx = Vec2(x, x)
   def xy = Vec2(x, y)
