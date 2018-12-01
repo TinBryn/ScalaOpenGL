@@ -78,7 +78,7 @@ object Mat4
 
     val x = (r + l) * iw
     val y = (t + b) * ih
-    val z = (f + n) * id
+    val z = (f * n) * id
 
     Mat4(
       2 * iw, 0, 0, 0,
@@ -139,4 +139,8 @@ case class Mat4(e11: Float, e12: Float, e13: Float, e14: Float,
     row(1) dot m.col(0), row(1) dot m.col(1), row(1) dot m.col(2), row(1) dot m.col(3),
     row(2) dot m.col(0), row(2) dot m.col(1), row(2) dot m.col(2), row(2) dot m.col(3),
     row(3) dot m.col(0), row(3) dot m.col(1), row(3) dot m.col(2), row(3) dot m.col(3))
+
+  def det: Float = ???
+
+  def inv: Mat4 = ???
 }

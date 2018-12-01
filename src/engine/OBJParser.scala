@@ -6,7 +6,7 @@ import scala.collection.mutable.ArrayBuffer
 
 object OBJParser
 {
-  def parse(strings: List[String]): Array[Vec3] =
+  def parse(lines: List[String]): Array[Vec3] =
   {
     val verticies = ArrayBuffer.empty[Vec3]
     val normals = ArrayBuffer.empty[Vec3]
@@ -19,7 +19,7 @@ object OBJParser
 
     def vec(x: String, y: String, z: String) = Vec3(x.toFloat, y.toFloat, z.toFloat)
 
-    for (line <- strings)
+    for (line <- lines)
     {
       line match
       {

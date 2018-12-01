@@ -7,8 +7,12 @@ import org.lwjgl.opengl._
 object Window
 {
   private val NULL = 0
+  private var width = 480
+  private var height = 320
   def open(width: Int = 480, height: Int = 320): Long =
   {
+    Window.width = width
+    Window.height = height
     GLFWErrorCallback.createPrint(System.err)
 
     if (!glfwInit())
@@ -46,8 +50,13 @@ object Window
 
   private def frameBufferCallback(window: Long, width: Int, height: Int): Unit =
   {
+    Window.width = width
+    Window.height = height
     GL11.glViewport(0, 0, width, height)
   }
+
+  def w: Int = width
+  def h: Int = height
 
   def shouldLoop(window: Long): Boolean = !glfwWindowShouldClose(window)
 
