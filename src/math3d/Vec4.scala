@@ -1,8 +1,24 @@
 package math3d
 
+object Vec4
+{
+  def apply(s: Float): Vec4 = Vec4(s, s, s, s)
+  def apply(v: Vec3, s: Float): Vec4 = Vec4(v.x, v.y, v.z, s)
+  def apply(v: Vec2, s: Float, t: Float): Vec4 = Vec4(v.x, v.y, s, t)
+}
+
 case class Vec4(x: Float, y: Float, z: Float, w: Float)
 {
   def toArray = Array(x, y, z, w)
+
+  def apply(index: Int): Float = index match
+  {
+    case 0 ⇒ x
+    case 1 ⇒ y
+    case 2 ⇒ z
+    case 3 ⇒ w
+    case _ ⇒ IndexError(index)
+  }
 
   //scala operators
   def +(s: Float) = Vec4(x + s, y + s, z + s, w + s)

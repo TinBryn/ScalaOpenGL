@@ -3,11 +3,22 @@ package math3d
 object Vec3
 {
   def apply(s: Float): Vec3 = Vec3(s, s, s)
+  def apply(v: Vec3): Vec3 = Vec3(v.x, v.y, v.z)
+  def apply(v: Vec4): Vec3 = Vec3(v.x, v.y, v.z)
+  def apply(v: Vec2, s: Float): Vec3 = Vec3(v.x, v.y, s)
 }
 
 case class Vec3(x: Float, y: Float, z: Float)
 {
   def toArray = Array(x, y, z)
+
+  def apply(index: Int): Float = index match
+  {
+    case 0 ⇒ x
+    case 1 ⇒ y
+    case 2 ⇒ z
+    case _ ⇒ IndexError(index)
+  }
 
   //scala operators
   def +(s: Float) = Vec3(x + s, y + s, z + s)

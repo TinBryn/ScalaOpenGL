@@ -3,6 +3,9 @@ package math3d
 object Vec2
 {
   def apply(s: Float): Vec2 = Vec2(s, s)
+  def apply(v: Vec2): Vec2 = Vec2(v.x, v.y)
+  def apply(v: Vec3): Vec2 = Vec2(v.x, v.y)
+  def apply(v: Vec4): Vec2 = Vec2(v.x, v.y)
 }
 
 case class Vec2(x: Float, y: Float)
@@ -35,6 +38,7 @@ case class Vec2(x: Float, y: Float)
   //unary operators
   def unary_- = Vec2(-x, -y)
 
+  //*
   //swizzle
   def xx = Vec2(x, x)
   def xy = Vec2(x, y)
@@ -64,4 +68,5 @@ case class Vec2(x: Float, y: Float)
   def yyxy = Vec4(y, y, x, y)
   def yyyx = Vec4(y, y, y, x)
   def yyyy = Vec4(y, y, y, y)
+  //*/
 }
